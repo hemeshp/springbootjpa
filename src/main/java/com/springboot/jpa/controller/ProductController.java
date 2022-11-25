@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.jpa.dto.ProductRequest;
+import com.springboot.jpa.mapper.ProductMapper;
 import com.springboot.jpa.model.Product;
 import com.springboot.jpa.service.ProductService;
 
@@ -37,11 +38,7 @@ public class ProductController {
 
 	@PostMapping("/products")
 	public ResponseEntity<Product> createProduct(@RequestBody @Valid ProductRequest productRequest) {
-		Product product = new Product();
-		product.setName(productRequest.getName());
-		product.setDescription(productRequest.getDescription());
-		product.setPrice(productRequest.getPrice());
-		return ResponseEntity.ok(this.productService.createProduct(product));
+		return ResponseEntity.ok(this.productService.createProduct(ProductMapper.INSTANCE.productRequestToProduct(productRequest)));
 	}
 
 	@PutMapping("/products/{id}")
