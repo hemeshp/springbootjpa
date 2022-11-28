@@ -5,13 +5,11 @@ import java.math.BigDecimal;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor(staticName = "build")
-@NoArgsConstructor
+@Builder
 public class ProductRequest {
 	@NotBlank(message = "name is mandatory")
 	private String name;
