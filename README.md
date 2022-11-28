@@ -3,7 +3,13 @@ Spring boot API for CRUD services for product
 
 <a href="http://localhost:9088/springboot/swagger-ui/">Swagger</a>
 
-#Docker Commands:
+# Use docker compose
+ mvn clean install
+ 
+ docker-compose up
+
+# Else use below docker commands:
+mvn clean install
 
 docker network create products-mysql
 

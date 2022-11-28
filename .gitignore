@@ -1,5 +1,7 @@
 /target/
 */target/**
+/mysqldata/
+*/mysqldata/**
 
 ### STS ###
 .apt_generated
