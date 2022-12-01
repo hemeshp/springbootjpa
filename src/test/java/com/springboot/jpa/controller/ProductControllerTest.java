@@ -67,6 +67,23 @@ class ProductControllerTest {
 		response.andDo(print()).andExpect(status().isOk()).andExpect(jsonPath("$.name", is(product.getName())));
 
 	}
+	
+	// JUnit test for Create products REST API
+	@Test
+	void createProduct_whenPostMethod_name_null() throws Exception {
+		// given - precondition or setup
+		ProductRequest productRequest = ProductRequest.builder().price(new BigDecimal(50)).build();
+
+		given(productService.createProduct(any(Product.class))).willAnswer((invocation) -> invocation.getArgument(0));
+
+		// when - action or behavior that we are going test
+		ResultActions response = mockMvc.perform(post("/products").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(productRequest)));
+
+		// then - verify the result or output using assert statements
+		response.andDo(print()).andExpect(status().isBadRequest()).andDo(print());
+
+	}
 
 	// JUnit test for Get All products REST API
 	@Test
@@ -193,5 +210,10 @@ class ProductControllerTest {
 		// then - verify the output
 		response.andExpect(status().isNotFound()).andDo(print());
 	}
+	
+	@Test
+    public void shouldProvideHealthMetric() throws Exception {
+        mockMvc.perform(get("/actuator/custom-health")).andExpect(status().isNotFound());
+    }
 
 }

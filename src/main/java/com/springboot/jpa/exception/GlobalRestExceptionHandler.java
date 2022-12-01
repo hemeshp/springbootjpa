@@ -31,7 +31,7 @@ public class GlobalRestExceptionHandler extends ResponseEntityExceptionHandler {
 		ex.getBindingResult().getFieldErrors().forEach((error) -> {
 			errorMap.put(error.getField(), error.getDefaultMessage());
 		});
-		return new ResponseEntity<>(errorMap, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(errorMap, status);
 	}
 
 }

@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -24,12 +26,14 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	@NotBlank(message = "name is mandatory")
 	@Column(name = "name")
 	private String name;
 	
 	@Column(name = "description")
 	private String description;
 	
+	@NotNull(message = "price is mandatory")
 	@Column(name = "price")
 	private BigDecimal price;
 	
